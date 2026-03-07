@@ -57,9 +57,10 @@ The dataset includes information about:
 
 ## Data Cleaning
 
-Before analysis, I cleaned the dataset by:
+I cleaned the dataset by:
 
 - removing the first row, which stores units instead of outage observations
+- renaming column headers to a consistent workable format
 - dropping or handling missing values where necessary
 - converting date and time columns into usable formats
 - selecting the most relevant variables for analysis and modeling
