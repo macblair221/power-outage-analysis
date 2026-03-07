@@ -11,7 +11,7 @@ This project uses the **Major Power Outages in the United States** dataset from 
 It contains historical records of large power outages across U.S. states along with information about outage causes, electricity demand, and demographic characteristics.
 
 Dataset source:  
-[Power Outage Dataset]((https://engineering.purdue.edu/LASCI/research-data/outages/outagerisks))
+[Power Outage Dataset](https://engineering.purdue.edu/LASCI/research-data/outages)
 
 Data dictionary:  
 [Data Dictionary](https://www.sciencedirect.com/science/article/pii/S2352340918307182)
