@@ -45,11 +45,11 @@ The distribution of outage durations is highly right-skewed, with most outages l
 
 There is a positive relationship between the number of customers affected and outage duration, though the relationship is not perfectly linear.
 
-<iframe src="assets/customers_vs_duration.html" width="100%" height="400" style="border:none;"></iframe>
+<iframe src="assets/customers_vs_duration.html" width="100%" height="400" frameborder="0"></iframe>
 
 The proportion of severe outages is similar across climate categories, suggesting climate alone may not strongly determine outage severity.
 
-<iframe src="assets/severe_by_climate.html" width="100%" height="400" style="border:none;"></iframe>
+<iframe src="assets/severe_by_climate.html" width="100%" height="400" frameborder="0"></iframe>
 
 ### Interesting Aggregates
 
