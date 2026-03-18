@@ -41,7 +41,7 @@ These steps ensured the dataset was clean and suitable for analysis.
 
 The distribution of outage durations is highly right-skewed, with most outages lasting a relatively short time and a smaller number lasting much longer.
 
-<iframe src="assets/outages_dist.html" width="100%" height="400" style="border:none;"></iframe>
+<iframe src="assets/outages_dist.html" width="100%" height="400" frameborder="0"></iframe>
 
 There is a positive relationship between the number of customers affected and outage duration, though the relationship is not perfectly linear.
 
