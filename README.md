@@ -41,15 +41,15 @@ These steps ensured the dataset was clean and suitable for analysis.
 
 The distribution of outage durations is highly right-skewed, with most outages lasting a relatively short time and a smaller number lasting much longer.
 
-<iframe src="assets/YOUR_UNIVARIATE_PLOT.html" width="800" height="600"></iframe>
+<iframe src="assets/outages_by_month.html" width="800" height="600"></iframe>
 
 There is a positive relationship between the number of customers affected and outage duration, though the relationship is not perfectly linear.
 
-<iframe src="assets/YOUR_SCATTER_PLOT.html" width="800" height="600"></iframe>
+<iframe src="assets/customers_vs_duration.html" width="800" height="600"></iframe>
 
 The proportion of severe outages is similar across climate categories, suggesting climate alone may not strongly determine outage severity.
 
-<iframe src="assets/YOUR_BAR_PLOT.html" width="800" height="600"></iframe>
+<iframe src="assets/severe_by_climate.html" width="800" height="600"></iframe>
 
 ### Interesting Aggregates
 | cause_category                |   avg_duration |   severe_rate |   count |
@@ -61,6 +61,7 @@ The proportion of severe outages is similar across climate categories, suggestin
 | intentional attack            |        429.98  |     0.0215311 |     403 |
 | equipment failure             |       1818     |     0.0166667 |      55 |
 | islanding                     |        200.545 |     0         |      44 |
+
 Outage severity varies across cause categories, with severe weather and fuel supply emergencies having the highest rates of prolonged outages.
 ## Assessment of Missingness
 
