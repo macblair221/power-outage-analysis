@@ -4,7 +4,7 @@ title: Dataset
 nav_order: 2
 ---
 
-# Dataset
+<div class="section">
 
 ## Source
 This project uses the **Major Power Outages in the United States** dataset from Purdue University's Laboratory for Advancing Sustainable Critical Infrastructure (LASCI).
@@ -15,6 +15,9 @@ Dataset source:
 
 Data dictionary:  
 [Data Dictionary](https://www.sciencedirect.com/science/article/pii/S2352340918307182)
+</div>
+
+<div class="section">
 
 ## Overview
 
@@ -22,6 +25,10 @@ A major outage in this dataset refers to an event that affected at least 50,000 
 
 The data combines outage event information with state-level climate, electricity consumption, economic, and land-use characteristics. 
 
+</div>
+
+<div class="section">
+  
 ## What the Dataset Includes
 
 The dataset includes information about:
@@ -35,6 +42,10 @@ The dataset includes information about:
 - state-level electricity pricing and consumption
 - regional economic and demographic characteristics
 
+</div>
+
+<div class="section">
+  
 ## Important Variables
 
 | Variable | Description |
@@ -55,6 +66,10 @@ The dataset includes information about:
 | CLIMATE.REGION | U.S. climate region |
 | CLIMATE.CATEGORY | Warm, Cold, or Normal climate episode |
 
+</div>
+
+<div class="section">
+  
 ## Data Cleaning
 
 I cleaned the dataset by:
@@ -64,7 +79,13 @@ I cleaned the dataset by:
 - dropping or handling missing values where necessary
 - converting date and time columns into usable formats
 - selecting the most relevant variables for analysis and modeling
+  
+</div>
 
+<div class="section">
+  
 ## Limitations
 
 Some variables contain missing values, and some outage causes are more detailed than others. Because the data is aggregated from several public sources, reporting consistency may vary across states and years.
+
+</div>
