@@ -2,7 +2,7 @@
 McAllister Blair  
 
 ---
-
+<div class="section">
 ## Introduction
 
 This project analyzes major U.S. power outages to understand what makes some outages last significantly longer than others. Specifically, I investigate whether we can predict if an outage will last more than 48 hours using only information available at the start of the event.
@@ -20,7 +20,7 @@ This dataset contains approximately 1,535 observations. Key variables used in th
 The central question of this project is:
 
 **What factors available at the start of an outage influence whether it becomes severe (lasting more than 48 hours)?**
-
+</div>
 ---
 
 ## Data Cleaning and Exploratory Data Analysis
