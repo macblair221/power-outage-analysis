@@ -1,14 +1,15 @@
-# Power Outage Severity Analysis
-McAllister Blair
+# Power Outage Severity Analysis  
+McAllister Blair  
 
 ---
 
 ## Introduction
-Power outages are critical infrastructure failures that can have significant economic and social impacts. Understanding what factors contribute to longer and more severe outages is important for improving resilience and response strategies.
 
-This project uses the Major Power Outages dataset, which contains records of large outages across the United States. Each row represents a major outage event, defined as affecting at least 50,000 customers or causing at least 300 MW of demand loss.
+This project analyzes major U.S. power outages to understand what makes some outages last significantly longer than others. Specifically, I investigate whether we can predict if an outage will last more than 48 hours using only information available at the start of the event.
 
-This dataset contains approximately 1,535 rows. The key variables used in this analysis include:
+This question matters because prolonged outages can have serious economic and safety consequences. If utilities can identify high-risk outages early, they can prioritize response efforts more effectively.
+
+This dataset contains approximately 1,535 observations. Key variables used in this analysis include:
 
 - `duration_minutes`: total outage duration  
 - `customers_affected`: number of customers impacted  
@@ -18,61 +19,147 @@ This dataset contains approximately 1,535 rows. The key variables used in this a
 
 The central question of this project is:
 
-**What factors (given at the start of an outage) influence whether a power outage becomes severe (lasting more than 48 hours)?**
+**What factors available at the start of an outage influence whether it becomes severe (lasting more than 48 hours)?**
 
-This question matters because identifying these factors can help utilities better predict and prepare for high-impact outages.
+---
 
 ## Data Cleaning and Exploratory Data Analysis
+
 ### Data Cleaning
 
 The dataset required several preprocessing steps before analysis:
 
 - Removed the first row containing unit descriptions instead of observations  
 - Standardized column names for consistency  
-- Combined date and time columns into usable datetime formats  
+- Combined date and time columns into datetime features  
 - Created `duration_minutes` from outage start and restoration times  
 - Created `severe_48h`, a binary indicator for outages lasting longer than 48 hours  
 - Converted numeric-like columns to proper numeric types  
+- Removed redundant features (e.g., postal code vs state)  
 - Handled missing values appropriately  
 
 These steps ensured the dataset was clean and suitable for analysis.
 
+---
+
 ### Exploratory Data Analysis
 
-The distribution of outage durations is highly right-skewed, with most outages lasting a relatively short time and a smaller number lasting much longer.
+The distribution of outage durations is highly right-skewed, meaning most outages are relatively short, while a small number last significantly longer.
 
 <iframe src="assets/outages_dist.html" width="100%" height="400" frameborder="0"></iframe>
 
-There is a positive relationship between the number of customers affected and outage duration, though the relationship is not perfectly linear.
+There is a positive relationship between the number of customers affected and outage duration. Larger outages tend to last longer, though there is still substantial variability.
 
 <iframe src="assets/customers_vs_duration.html" width="100%" height="400" frameborder="0"></iframe>
 
-The proportion of severe outages is similar across climate categories, suggesting climate alone may not strongly determine outage severity.
+The proportion of severe outages is very similar across climate categories, suggesting that climate alone may not strongly determine outage severity.
 
 <iframe src="assets/severe_by_climate.html" width="100%" height="400" frameborder="0"></iframe>
 
+---
+
 ### Interesting Aggregates
 
-| cause_category                |   avg_duration |   severe_rate |   count |
-|:------------------------------|---------------:|--------------:|--------:|
-| fuel supply emergency         |      13493.5   |     0.411765  |      38 |
-| severe weather                |       3883.18  |     0.411533  |     744 |
-| public appeal                 |       1468.45  |     0.144928  |      69 |
-| system operability disruption |        728.87  |     0.0551181 |     123 |
-| intentional attack            |        429.98  |     0.0215311 |     403 |
-| equipment failure             |       1818     |     0.0166667 |      55 |
-| islanding                     |        200.545 |     0         |      44 |
+| cause_category                | avg_duration | severe_rate | count |
+|:------------------------------|-------------:|------------:|------:|
+| fuel supply emergency         | 13493.5      | 0.4118      | 38    |
+| severe weather                | 3883.18      | 0.4115      | 744   |
+| public appeal                 | 1468.45      | 0.1449      | 69    |
+| system operability disruption | 728.87       | 0.0551      | 123   |
+| intentional attack            | 429.98       | 0.0215      | 403   |
+| equipment failure             | 1818         | 0.0167      | 55    |
+| islanding                     | 200.55       | 0.0000      | 44    |
 
-Outage severity varies across cause categories, with severe weather and fuel supply emergencies having the highest rates of prolonged outages.
+Outage severity varies significantly across cause categories. Severe weather stands out as especially important because it combines a high rate of severe outages with a large number of events, making it one of the primary drivers of prolonged outages.
+
+---
+
 ## Assessment of Missingness
+
+One key variable, `customers_affected`, contains missing values. This missingness is unlikely to be completely random, since utilities may have difficulty estimating the number of affected customers during large or complex outages.
+
+A permutation test shows that missingness depends on `cause_category`, but not on `climate_category`. This suggests the missingness mechanism is likely **Missing At Random (MAR)** rather than completely random.
+
+<iframe src="assets/missingness_cause.html" width="100%" height="400" frameborder="0"></iframe>
+
+---
 
 ## Hypothesis Testing
 
+**Null Hypothesis:**  
+The proportion of prolonged outages (lasting more than 48 hours) is the same during warm and cold climate conditions.
+
+**Alternative Hypothesis:**  
+The proportion of prolonged outages differs between warm and cold climate conditions.
+
+A permutation test was conducted using the difference in proportions as the test statistic.
+
+- Observed difference ≈ 0.005  
+- p-value = 0.925  
+
+Since the p-value is very large, we fail to reject the null hypothesis. This suggests there is no significant evidence that climate category alone affects whether an outage becomes prolonged.
+
+<iframe src="assets/permutation_test.html" width="100%" height="400" frameborder="0"></iframe>
+
+---
+
 ## Framing a Prediction Problem
+
+This project is framed as a **binary classification problem**, where the goal is to predict whether an outage will last longer than 48 hours.
+
+- Target variable: `severe_48h`  
+- Type: Classification  
+
+Only features available at the start of the outage are used to avoid data leakage, ensuring the model reflects a realistic prediction scenario.
+
+---
 
 ## Baseline Model
 
+A logistic regression model was used as the baseline.
+
+Preprocessing steps included:
+
+- Median imputation for numerical features  
+- Most frequent imputation for categorical features  
+- One-hot encoding of categorical variables  
+- Standardization of numerical variables  
+
+The baseline model achieved:
+
+- AUC ≈ 0.83  
+- Accuracy ≈ 0.81  
+
+Because severe outages are less common, recall is particularly important. A balanced version of the model improved recall for severe outages, reducing the risk of missing critical events.
+
+---
+
 ## Final Model
+
+The final model builds on the baseline through simple feature engineering:
+
+- Log transformation of population  
+- Interaction feature combining outage cause and climate  
+
+Hyperparameters were tuned using cross-validation.
+
+Despite these improvements, performance increased only slightly:
+
+- Final AUC ≈ 0.83  
+
+This suggests that the baseline model already captures most of the predictive signal in the data, and that more complex modeling may be required for further improvements.
+
+---
 
 ## Fairness Analysis
 
+To evaluate fairness, model performance was compared between Western and Eastern regions using recall.
+
+- West recall: 0.58  
+- East recall: 0.79  
+- Difference: -0.21  
+- p-value = 0.026  
+
+Since the p-value is below 0.05, we reject the null hypothesis of equal performance. This indicates that the model performs significantly worse at identifying severe outages in Western regions.
+
+This suggests potential regional bias in the model, which would be important to address before using it in real-world decision-making.
