@@ -99,8 +99,6 @@ A permutation test was conducted using the difference in proportions as the test
 
 Since the p-value is very large, we fail to reject the null hypothesis. This suggests there is no significant evidence that climate category alone affects whether an outage becomes prolonged.
 
-<iframe src="assets/permutation_test.html" width="100%" height="400" frameborder="0"></iframe>
-
 ---
 
 ## Framing a Prediction Problem
