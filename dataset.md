@@ -3,89 +3,65 @@ layout: default
 title: Dataset
 ---
 
-<div class="section">
-  <h2>Source</h2>
+# Dataset
 
-  <p>
-    This project uses the <strong>Major Power Outages in the United States</strong> dataset from Purdue University's Laboratory for Advancing Sustainable Critical Infrastructure (LASCI).
-    It contains historical records of large power outages across U.S. states along with information about outage causes, electricity demand, and demographic characteristics.
-  </p>
+## Source
 
-  <p>
-    Dataset source:<br>
-    <a href="https://engineering.purdue.edu/LASCI/research-data/outages">Power Outage Dataset</a>
-  </p>
+This project uses the Major Power Outages in the United States dataset from Purdue University's Laboratory for Advancing Sustainable Critical Infrastructure (LASCI). It contains historical records of large power outages across U.S. states along with information about outage causes, electricity demand, and demographic characteristics.
 
-  <p>
-    Data dictionary:<br>
-    <a href="https://www.sciencedirect.com/science/article/pii/S2352340918307182">Data Dictionary</a>
-  </p>
-</div>
+Dataset source:  
+[Power Outage Dataset](https://engineering.purdue.edu/LASCI/research-data/outages)
 
-<div class="section">
-  <h2>Overview</h2>
+Data dictionary:  
+[Data Dictionary](https://www.sciencedirect.com/science/article/pii/S2352340918307182)
 
-  <p>
-    A major outage in this dataset refers to an event that affected at least 50,000 customers or caused at least 300 MW of unplanned firm load loss.
-  </p>
+## Overview
 
-  <p>
-    The data combines outage event information with state-level climate, electricity consumption, economic, and land-use characteristics.
-  </p>
-</div>
+A major outage in this dataset refers to an event that affected at least 50,000 customers or caused at least 300 MW of unplanned firm load loss.
 
-<div class="section">
-  <h2>What the Dataset Includes</h2>
+The data combines outage event information with state-level climate, electricity consumption, economic, and land use characteristics.
 
-  <ul>
-    <li>when the outage happened</li>
-    <li>where the outage occurred</li>
-    <li>how long the outage lasted</li>
-    <li>how many customers were affected</li>
-    <li>the reported cause of the outage</li>
-    <li>electricity demand loss</li>
-    <li>state-level electricity pricing and consumption</li>
-    <li>regional economic and demographic characteristics</li>
-  </ul>
-</div>
+## What the Dataset Includes
 
-<div class="section">
-  <h2>Important Variables</h2>
+The dataset includes information about:
 
-  <table>
-    <tr><th>Variable</th><th>Description</th></tr>
-    <tr><td>YEAR</td><td>Year the outage occurred</td></tr>
-    <tr><td>MONTH</td><td>Month the outage occurred</td></tr>
-    <tr><td>U.S._STATE</td><td>State where the outage occurred</td></tr>
-    <tr><td>NERC.REGION</td><td>NERC region involved</td></tr>
-    <tr><td>OUTAGE.START.DATE</td><td>Start date</td></tr>
-    <tr><td>OUTAGE.START.TIME</td><td>Start time</td></tr>
-    <tr><td>OUTAGE.RESTORATION.DATE</td><td>End date</td></tr>
-    <tr><td>OUTAGE.RESTORATION.TIME</td><td>End time</td></tr>
-    <tr><td>OUTAGE.DURATION</td><td>Duration (minutes)</td></tr>
-    <tr><td>CUSTOMERS.AFFECTED</td><td>Customers impacted</td></tr>
-    <tr><td>DEMAND.LOSS.MW</td><td>Demand loss</td></tr>
-    <tr><td>CAUSE.CATEGORY</td><td>Outage cause</td></tr>
-    <tr><td>CLIMATE.CATEGORY</td><td>Climate type</td></tr>
-  </table>
-</div>
+- when the outage happened
+- where the outage occurred
+- how long the outage lasted
+- how many customers were affected
+- the reported cause of the outage
+- electricity demand loss
+- state level electricity pricing and consumption
+- regional economic and demographic characteristics
 
-<div class="section">
-  <h2>Data Cleaning</h2>
+## Important Variables
 
-  <ul>
-    <li>Removed the first row containing units</li>
-    <li>Standardized column names</li>
-    <li>Converted date/time into usable formats</li>
-    <li>Handled missing values</li>
-    <li>Selected relevant variables for modeling</li>
-  </ul>
-</div>
+| Variable | Description |
+|----------|-------------|
+| YEAR | Year the outage occurred |
+| MONTH | Month the outage occurred |
+| U.S._STATE | State where the outage occurred |
+| NERC.REGION | NERC region involved |
+| OUTAGE.START.DATE | Start date |
+| OUTAGE.START.TIME | Start time |
+| OUTAGE.RESTORATION.DATE | End date |
+| OUTAGE.RESTORATION.TIME | End time |
+| OUTAGE.DURATION | Duration in minutes |
+| CUSTOMERS.AFFECTED | Customers impacted |
+| DEMAND.LOSS.MW | Demand loss |
+| CAUSE.CATEGORY | Outage cause |
+| CLIMATE.CATEGORY | Climate type |
 
-<div class="section">
-  <h2>Limitations</h2>
+## Data Cleaning
 
-  <p>
-    Some variables contain missing values, and some outage causes are more detailed than others. Because the data is aggregated from several public sources, reporting consistency may vary across states and years.
-  </p>
-</div>
+I cleaned the dataset by:
+
+- removing the first row containing units instead of outage observations
+- standardizing column names
+- converting date and time fields into usable datetime formats
+- handling missing values where necessary
+- selecting relevant variables for analysis and modeling
+
+## Limitations
+
+Some variables contain missing values, and some outage causes are more detailed than others. Because the data is aggregated from several public sources, reporting consistency may vary across states and years.
