@@ -82,6 +82,8 @@ A permutation test shows that missingness depends on `cause_category`, but not o
 
 <iframe src="assets/missingness_cause.html" width="100%" height="400" frameborder="0"></iframe>
 
+<iframe src="assets/missingness_climate.html" width="100%" height="400" frameborder="0"></iframe>
+
 ---
 
 ## Hypothesis Testing
