@@ -118,14 +118,14 @@ Only features available at the start of the outage are used to avoid data leakag
 
 A logistic regression model was used as the baseline.
 
-Preprocessing steps included:
+Preprocessing steps:
 
 - Median imputation for numerical features  
 - Most frequent imputation for categorical features  
 - One-hot encoding of categorical variables  
 - Standardization of numerical variables  
 
-The baseline model achieved:
+The baseline model performed well:
 
 - AUC ≈ 0.83  
 - Accuracy ≈ 0.81  
@@ -136,7 +136,7 @@ Because severe outages are less common, recall is particularly important. A bala
 
 ## Final Model
 
-The final model builds on the baseline through simple feature engineering:
+The final model builds on the baseline through feature engineering:
 
 - Log transformation of population  
 - Interaction feature combining outage cause and climate  
